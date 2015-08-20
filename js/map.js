@@ -1,6 +1,6 @@
   // Width and heigth
-  var width = 700;
-  var height = 500;
+  var width = 500;
+  var height = 450;
   var scale = 5500;
 
 
@@ -16,9 +16,13 @@
   d3.json("data/nicaragua.geojson", function(nicaragua) {
 
     // Debug output
-    console.log(nicaragua);
+    // console.log(nicaragua);
 
+    // Define map center
     var center = d3.geo.centroid(nicaragua);
+    center[0] = center[0] + 2;
+    center[1] = center[1] - 0.3;
+
 
     // Apply projection
     var projection = d3.geo.mercator().scale(scale).center(center);
@@ -41,6 +45,7 @@
         .text(function(d, i){ return d.properties.name; })
       );
 
+  // Adding background cirles in center of map element
   svg.selectAll("circle")
     .data(nicaragua.features)
     .enter()
@@ -55,6 +60,7 @@
     .attr("opacity", "0.6")
     .attr("fill", "#d8005c");
 
+  // Adding data (expected a number of not more than two digits) to the center of map element
   svg.selectAll("text")
     .data(nicaragua.features)
     .enter()
@@ -72,6 +78,12 @@
     .attr("font-family", "Arial, sans-serif")
     .attr("font-weight", "bold")
     .attr('font-size','12pt');
+
+    svg.append('text').text('Map data © OpenStreetMap')
+      .attr("class", "copyright-note")
+      .attr('x', 10)
+      .attr('y', height - 5)
+      .attr('fill', '#999');
 
   });
 

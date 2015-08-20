@@ -30,4 +30,11 @@ text, circle {
   border: 1px solid #000000;
 }
 
-
+.copyright-note {
+  background-color: #f6f6f6;
+  font-family: Arial, sans-serif;
+  border: 1px solid #333333;
+  display: block;
+  font-size: 10px;
+  color: #999;
+}
