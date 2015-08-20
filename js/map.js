@@ -79,7 +79,7 @@
     .attr("font-weight", "bold")
     .attr('font-size','12pt');
 
-    svg.append('text').text('Map data © OpenStreetMap')
+    svg.append('text').text('Map data © OpenStreetMap contributors')
       .attr("class", "copyright-note")
       .attr('x', 10)
       .attr('y', height - 5)
