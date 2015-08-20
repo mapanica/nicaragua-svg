@@ -2,7 +2,7 @@
 <head>
 	<style type="text/css">
 	body { background-color: #f4f4f4}
-	departamento:hover {fill:#d8005c;}
+	.region:hover {fill:#d8005c;}
     path {
       cursor: pointer;
     }
@@ -10,12 +10,27 @@
       color: #ff0000;
       pointer-events: none;
     }
+    .tooltip {
+      color: #333;
+      background-color: #f6f6f6;
+      display: block;
+      border: 1px solid #333;
+      padding: 9px 4px;
+      font-weight: bold;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      border-radius: 4px 4px 4px 4px;
+      -moz-border-radius: 4px 4px 4px 4px;
+      -webkit-border-radius: 4px 4px 4px 4px;
+      border: 1px solid #000000;
+    }
 
 	</style>
 </head>
 <body>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
+<script type="text/javascript" src="./tooltip.js"></script>
 <script>
 
 
@@ -34,7 +49,7 @@
   var path = d3.geo.path();
 
   // Load in GeoJSON data
-  d3.json("nica.geojson", function(nicaragua) {
+  d3.json("data/nicaragua.geojson", function(nicaragua) {
 
     // Debug output
     console.log(nicaragua);
@@ -52,13 +67,15 @@
       .append("path")
       .attr("d", path)
       .attr("fill", "#c6c7c1")
-      .attr("class", "departamento")
+      .attr("class", "region")
       .style("stroke-width", "1")
       .style("stroke", "#f4f4f4")
-      .on('mouseover', function(d, i){ d3.select(this).style({fill: '#d8005c'}); })
-      .on('mouseout', function(d, i){ d3.select(this).style({fill: '#c6c7c1'}); })
-      .append("svg:title")
-      .text(function(d) { return d.properties.name; });
+      //.on('mouseover', function(d, i){ d3.select(this).style({fill: '#d8005c'}); })
+      //.on('mouseout', function(d, i){ d3.select(this).style({fill: '#c6c7c1'}); })
+      .call(d3.helper.tooltip()
+        .attr({class: 'tooltip'})
+        .text(function(d, i){ return d.properties.name; })
+      );
 
   svg.selectAll("circle")
     .data(nicaragua.features)
