@@ -1,0 +1,33 @@
+body {
+  background-color: #f4f4f4
+}
+
+.region:hover {
+  fill:#d8005c;
+}
+
+path {
+  cursor: pointer;
+}
+
+text, circle {
+  color: #ff0000;
+  pointer-events: none;
+}
+
+.tooltip {
+  color: #333;
+  background-color: #f6f6f6;
+  display: block;
+  border: 1px solid #333;
+  padding: 9px 4px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 4px 4px 4px 4px;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  border: 1px solid #000000;
+}
+
+
